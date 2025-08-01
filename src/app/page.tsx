@@ -1,5 +1,9 @@
-import { Sidebar, SidebarContent, SidebarFooter, SidebarHeader, SidebarMenu, SidebarMenuButton, SidebarMenuItem, SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
+import { Sidebar, SidebarContent, SidebarFooter, SidebarGroup, SidebarHeader, SidebarMenu, SidebarMenuButton, SidebarMenuItem, SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
 import AppSideBarClient from "./AppSidebarClient";
+import Link from "next/link";
+import { LogInIcon } from "lucide-react";
+import { SignedOut } from "@/services/clerk/components/SignInStatus";
+import { SidebarUserButton } from "@/features/users/components/SidebarUserButton";
 
 export default function Home() {
   return (
@@ -10,11 +14,26 @@ export default function Home() {
             <SidebarTrigger />
             <span className="text-xl text-nowrap">Tony Jobs</span>
           </SidebarHeader>
-          <SidebarContent></SidebarContent>
+          <SidebarContent>
+            <SidebarGroup>
+            <SidebarMenu>
+              <SignedOut>
+                <SidebarMenuItem>
+                  <SidebarMenuButton asChild>
+                    <Link href="/sign-in">
+                      <LogInIcon />
+                      <span>Log In</span>
+                    </Link>
+                  </SidebarMenuButton>
+                </SidebarMenuItem>
+              </SignedOut>
+            </SidebarMenu>
+            </SidebarGroup>
+          </SidebarContent>
           <SidebarFooter>
             <SidebarMenu>
               <SidebarMenuItem>
-                <SidebarMenuButton>Button 1</SidebarMenuButton>
+                <SidebarUserButton />
               </SidebarMenuItem>
             </SidebarMenu>
           </SidebarFooter>
