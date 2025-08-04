@@ -2,7 +2,7 @@ import { Sidebar, SidebarContent, SidebarFooter, SidebarGroup, SidebarHeader, Si
 import AppSideBarClient from "./AppSidebarClient";
 import Link from "next/link";
 import { LogInIcon } from "lucide-react";
-import { SignedOut } from "@/services/clerk/components/SignInStatus";
+import { SignedIn, SignedOut } from "@/services/clerk/components/SignInStatus";
 import { SidebarUserButton } from "@/features/users/components/SidebarUserButton";
 
 export default function Home() {
@@ -30,13 +30,15 @@ export default function Home() {
             </SidebarMenu>
             </SidebarGroup>
           </SidebarContent>
-          <SidebarFooter>
-            <SidebarMenu>
-              <SidebarMenuItem>
-                <SidebarUserButton />
-              </SidebarMenuItem>
-            </SidebarMenu>
-          </SidebarFooter>
+          <SignedIn>
+            <SidebarFooter>
+              <SidebarMenu>
+                <SidebarMenuItem>
+                  <SidebarUserButton />
+                </SidebarMenuItem>
+              </SidebarMenu>
+            </SidebarFooter>
+          </SignedIn>
         </Sidebar>
         <main className="flex-1">CONTENT HERE</main>
       </AppSideBarClient>
